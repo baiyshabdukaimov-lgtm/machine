@@ -1,0 +1,90 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.dark body { background: #020617; color: #e2e8f0; }
+
+#root {
+  min-height: 100vh;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+  z-index: 1;
+}
+
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
+.station-marker div {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 3px solid white;
+  border-radius: 12px;
+  color: white;
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 5px 18px rgba(15, 23, 42, .25);
+}
+.station-marker b { position: absolute; right: -6px; top: -6px; min-width: 16px; border: 2px solid white; border-radius: 999px; background: #16a34a; padding: 0 3px; color: white; font-size: 10px; line-height: 16px; text-align: center; }
+
+.custom-marker {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.24);
+  background: #22c55e;
+}
+
+.glass-card {
+  @apply rounded-2xl border border-white/10 bg-slate-900/70 backdrop-blur-xl shadow-glow;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid rgb(203 213 225);
+  border-radius: .75rem;
+  background: white;
+  color: #0f172a;
+  padding: .75rem;
+  outline: none;
+}
+
+.dark input, .dark select, .dark textarea { border-color: rgb(255 255 255 / .12); background: rgb(15 23 42); color: #f8fafc; }
+.notification-enter { animation: notification-slide .2s ease-out both; transform-origin: top right; }
+@keyframes notification-slide { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
