@@ -1,0 +1,11 @@
+# Frontend build artifacts and dependencies are recreated by Vercel.
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.vercel/
+
+# Backend local/generated files.
+backend/.env
+backend/staticfiles/
+__pycache__/
+*.py[cod]
