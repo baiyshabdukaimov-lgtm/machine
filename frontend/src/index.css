@@ -43,20 +43,11 @@ body {
   border: none;
 }
 
-.station-marker div {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 3px solid white;
-  border-radius: 12px;
-  color: white;
-  position: relative;
-  font-size: 14px;
-  font-weight: 700;
-  box-shadow: 0 5px 18px rgba(15, 23, 42, .25);
-}
-.station-marker b { position: absolute; right: -6px; top: -6px; min-width: 16px; border: 2px solid white; border-radius: 999px; background: #16a34a; padding: 0 3px; color: white; font-size: 10px; line-height: 16px; text-align: center; }
+.station-marker { filter: drop-shadow(0 7px 12px rgba(2, 8, 23, .35)); transition: filter .2s ease, transform .2s ease; }
+.station-marker:hover { filter: drop-shadow(0 9px 18px rgba(34, 211, 238, .55)); transform: translateY(-2px); }
+.station-pin { position: relative; width: 50px; height: 58px; }
+.station-pin svg { display: block; width: 50px; height: 58px; }
+.station-pin b { position: absolute; right: -3px; top: -4px; display: grid; min-width: 18px; height: 18px; place-items: center; border: 2px solid white; border-radius: 999px; background: #10b981; color: white; font-size: 10px; line-height: 14px; text-align: center; box-shadow: 0 3px 8px rgb(2 8 23 / .35); }
 
 .custom-marker {
   width: 18px;
@@ -70,6 +61,8 @@ body {
 .glass-card {
   @apply rounded-2xl border border-white/10 bg-slate-900/70 backdrop-blur-xl shadow-glow;
 }
+
+.dark main { background-image: radial-gradient(circle at 12% 18%, rgb(14 165 233 / .07), transparent 28rem), radial-gradient(circle at 88% 35%, rgb(37 99 235 / .09), transparent 32rem); }
 
 button, input, select, textarea {
   font: inherit;

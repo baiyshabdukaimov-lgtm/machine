@@ -6,10 +6,11 @@ import { ArrowRight, CalendarCheck, Car, Check, Clock3, Star } from 'lucide-reac
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CarSelector from '../components/CarSelector';
+import { StationMark, stationMarkerHtml } from '../components/StationMark';
 import { stations } from '../data/stations';
 import { api } from '../services/api';
 
-const markerIcon = (station) => new L.DivIcon({ className: 'station-marker', html: `<div style="background:${station.accent}"><span>${station.name.slice(0, 1)}</span><b>${station.freeSlots}</b></div>`, iconSize: [40, 40], iconAnchor: [20, 20] });
+const markerIcon = (station) => new L.DivIcon({ className: 'station-marker', html: stationMarkerHtml(station), iconSize: [50, 58], iconAnchor: [25, 56], popupAnchor: [0, -52] });
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -39,6 +40,6 @@ function StationCard({ station, selected, onSelect, t }) { return <button onClic
 function PopupCard({ station, t, onBook }) { return <div className="min-w-[210px]"><div className="flex gap-2"><Logo station={station} /><div><p className="font-bold">{station.name}</p><p className="text-xs">{station.address}</p></div></div><Occupancy station={station} t={t} /><Queue station={station} t={t} /><button onClick={onBook} className="mt-3 w-full rounded-lg bg-cyan-500 px-3 py-2 text-sm font-semibold text-slate-950">{t('home.createBooking')}</button></div>; }
 function Occupancy({ station, t, light = false }) { return <div className={`mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs ${light ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}><span className="flex items-center gap-1"><Car size={13} />{station.inService} {t('home.inService')}</span><span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{station.freeSlots} {t('home.freeSlots')}</span><span className="flex items-center gap-1"><Clock3 size={13} />{station.queueCount}</span></div>; }
 function Queue({ station, t }) { return <div className="mt-3 border-t pt-2"><p className="mb-1 text-xs font-semibold">{t('home.queueNow')}</p>{station.currentQueue.length ? <div className="flex flex-wrap gap-1">{station.currentQueue.map((item) => <span key={item.label} className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] dark:bg-slate-800">#{item.position} {item.label}</span>)}</div> : <p className="text-xs text-emerald-600">{t('home.queueEmpty')}</p>}</div>; }
-function Logo({ station }) { return station.logo ? <img src={station.logo} alt="" className="h-10 w-10 rounded-xl object-cover" /> : <span style={{ backgroundColor: station.accent }} className="grid h-10 w-10 shrink-0 place-items-center rounded-xl font-bold text-white">{station.name.slice(0, 1)}</span>; }
+function Logo({ station }) { return station.logo ? <img src={station.logo} alt="" className="h-10 w-10 rounded-xl object-cover" /> : <StationMark station={station} compact />; }
 function SectionTitle({ eyebrow, title }) { return <div className="mb-6"><p className="text-sm font-semibold text-cyan-600 dark:text-cyan-300">{eyebrow}</p><h2 className="mt-1 text-3xl font-bold tracking-tight">{title}</h2></div>; }
 function Field({ label, children, className = '' }) { return <label className={`grid gap-1.5 text-sm font-medium text-slate-200 ${className}`}><span>{label}</span>{children}</label>; }
