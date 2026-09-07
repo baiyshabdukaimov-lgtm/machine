@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, 'Segoe UI', sans-serif;
+  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #0f172a;
-  background: #f8fafc;
+  background: #f5f8fc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  background: #f8fafc;
+  background: #f5f8fc;
   color: #0f172a;
 }
 
@@ -75,6 +75,12 @@ button, input, select, textarea {
   font: inherit;
 }
 
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button, a { transition-duration: 180ms; transition-timing-function: cubic-bezier(.22, 1, .36, 1); }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
+
+::selection { background: rgb(34 211 238 / .28); }
+
 input, select, textarea {
   width: 100%;
   border: 1px solid rgb(203 213 225);
@@ -88,3 +94,13 @@ input, select, textarea {
 .dark input, .dark select, .dark textarea { border-color: rgb(255 255 255 / .12); background: rgb(15 23 42); color: #f8fafc; }
 .notification-enter { animation: notification-slide .2s ease-out both; transform-origin: top right; }
 @keyframes notification-slide { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 640px) {
+  .leaflet-control-zoom { display: none; }
+  .leaflet-popup-content { margin: 12px; }
+  h1 { line-height: 1.08; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

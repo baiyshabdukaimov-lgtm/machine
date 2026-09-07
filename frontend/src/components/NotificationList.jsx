@@ -7,7 +7,7 @@ const items = [
   { key: 'promo', icon: Megaphone, color: 'text-violet-500' },
 ];
 
-export default function NotificationList({ open, onClose }) {
+export default function NotificationList({ open, onClose, enabled, onToggle }) {
   const { t } = useTranslation();
   if (!open) return null;
 
@@ -23,7 +23,7 @@ export default function NotificationList({ open, onClose }) {
           <div><p className="text-sm font-medium">{t(`notifications.${key}`)}</p><p className="mt-0.5 text-xs leading-5 text-slate-500 dark:text-slate-400">{t(`notifications.${key}Text`)}</p></div>
         </div>)}
       </div>
-      <button className="w-full border-t border-slate-100 px-4 py-3 text-xs font-medium text-cyan-600 dark:border-white/10 dark:text-cyan-300">{t('notifications.allRead')}</button>
+      <div className="flex items-center justify-between gap-3 border-t border-slate-100 px-4 py-3 dark:border-white/10"><span className="text-xs font-medium">{t('header.notifications')}</span><button type="button" aria-pressed={enabled} onClick={onToggle} className={`h-6 w-11 rounded-full p-1 transition ${enabled ? 'bg-cyan-500' : 'bg-slate-300 dark:bg-white/20'}`}><span className={`block h-4 w-4 rounded-full bg-white shadow transition-transform ${enabled ? 'translate-x-5' : ''}`} /></button></div>
     </div>
   );
 }
